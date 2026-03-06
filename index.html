@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-GO | 유출되도 안전한 금고</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Noto Sans KR', sans-serif; background:#03003E; color:#fff; overflow-x:hidden; }
+
+/* ───── TOP CONTACT BAR ───── */
+.top-bar {
+  background:#0A0AB8;
+  border-bottom:1px solid rgba(0,212,255,0.25);
+  padding:10px 40px;
+  display:flex; justify-content:space-between; align-items:center;
+  position:sticky; top:0; z-index:200;
+}
+.top-bar-left { font-size:12px; color:rgba(255,255,255,0.55); letter-spacing:0.5px; }
+.top-contact {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(0,212,255,0.12);
+  border:1px solid rgba(0,212,255,0.35);
+  border-radius:6px; padding:6px 18px;
+  text-decoration:none; color:#00D4FF;
+  font-size:13px; font-weight:700; letter-spacing:0.5px;
+  transition:all .2s;
+}
+.top-contact:hover { background:rgba(0,212,255,0.22); transform:scale(1.02); }
+.dot { width:7px; height:7px; background:#00D4FF; border-radius:50%; animation:blink 1.8s infinite; display:inline-block; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ───── HEADER ───── */
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 40px;
+  background:rgba(3,0,62,0.92); backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:sticky; top:37px; z-index:190;
+}
+.logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.logo-box {
+  width:40px; height:40px;
+  background:linear-gradient(135deg,#1515CC,#0808A0);
+  border-radius:9px; border:1px solid rgba(0,212,255,0.35);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#00D4FF;
+}
+.logo-name { font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:#fff; letter-spacing:1px; }
+.logo-name em { color:#00D4FF; font-style:normal; }
+.logo-sub { font-size:9px; color:#5A7FCF; letter-spacing:2px; text-transform:uppercase; }
+nav { display:flex; align-items:center; gap:4px; }
+nav a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:13px; font-weight:500; padding:7px 14px; border-radius:6px; transition:all .2s; }
+nav a:hover { background:rgba(0,212,255,0.08); color:#fff; }
+.nav-cta { background:rgba(0,212,255,0.1) !important; border:1px solid rgba(0,212,255,0.3); color:#00D4FF !important; }
+
+/* ───── HERO ───── */
+#hero {
+  min-height:92vh; display:grid; place-items:center;
+  text-align:center; padding:100px 24px 80px;
+  position:relative; overflow:hidden;
+}
+#c { position:absolute; inset:0; pointer-events:none; }
+.hero-in { position:relative; z-index:1; max-width:840px; margin:0 auto; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.28);
+  border-radius:100px; padding:5px 18px;
+  font-size:11px; color:#00D4FF; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:28px; animation:up .7s ease both;
+}
+.hero-h1 {
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(54px,10vw,106px); font-weight:700;
+  line-height:1.0; letter-spacing:-2px;
+  animation:up .7s .1s ease both; margin-bottom:8px;
+}
+.hero-h1 em { color:#00D4FF; font-style:normal; }
+.hero-kr { font-size:clamp(18px,3.5vw,32px); font-weight:700; color:#FFD600; margin-bottom:22px; animation:up .7s .2s ease both; }
+.hero-body { font-size:16px; color:rgba(175,200,255,0.85); line-height:1.9; font-weight:300; max-width:500px; margin:0 auto 44px; animation:up .7s .3s ease both; }
+.hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; animation:up .7s .4s ease both; }
+.btn-p {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,#0044CC,#001FA8); color:#fff; text-decoration:none;
+  padding:14px 36px; border-radius:9px; font-size:15px; font-weight:700;
+  border:1px solid rgba(0,212,255,0.4); transition:all .25s; letter-spacing:.3px;
+}
+.btn-p:hover { background:linear-gradient(135deg,#0055EE,#0033CC); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,50,200,.5); }
+.btn-g {
+  display:inline-flex; align-items:center; gap:8px; color:#00D4FF; text-decoration:none;
+  padding:14px 36px; border-radius:9px; font-size:15px; font-weight:600;
+  border:1px solid rgba(0,212,255,.3); background:rgba(0,212,255,.04); transition:all .25s;
+}
+.btn-g:hover { background:rgba(0,212,255,.1); transform:translateY(-3px); }
+.kpi-strip {
+  display:flex; gap:0; margin-top:70px;
+  border:1px solid rgba(0,212,255,0.12); border-radius:14px; overflow:hidden;
+  animation:up .7s .5s ease both;
+}
+.kpi { flex:1; padding:24px 16px; text-align:center; border-right:1px solid rgba(0,212,255,0.1); background:rgba(10,10,100,0.35); backdrop-filter:blur(8px); transition:background .25s; }
+.kpi:last-child { border-right:none; }
+.kpi:hover { background:rgba(0,40,150,0.4); }
+.kv { font-family:'Rajdhani',sans-serif; font-size:26px; font-weight:700; color:#00D4FF; display:block; margin-bottom:4px; }
+.kl { font-size:11px; color:rgba(150,180,255,0.65); letter-spacing:.5px; }
+@keyframes up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ───── SHARED ───── */
+.wrap { max-width:1160px; margin:0 auto; padding:0 40px; }
+.sec { padding:96px 0; }
+.sec-lbl { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#00D4FF; margin-bottom:10px; }
+.sec-h { font-family:'Rajdhani',sans-serif; font-size:clamp(28px,4vw,46px); font-weight:700; line-height:1.1; }
+.sec-h em { color:#00D4FF; font-style:normal; }
+.sec-d { margin-top:12px; font-size:15px; color:rgba(160,190,255,0.8); line-height:1.8; font-weight:300; max-width:500px; margin-bottom:52px; }
+.hr { height:1px; background:linear-gradient(90deg,transparent,rgba(0,212,255,.15),transparent); }
+
+/* ───── PRODUCTS ───── */
+.prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.prod-card {
+  background:linear-gradient(160deg,rgba(15,20,140,0.65),rgba(8,10,100,0.45));
+  border:1px solid rgba(0,212,255,0.12); border-radius:16px; padding:30px 24px;
+  transition:all .3s; position:relative; overflow:hidden;
+}
+.prod-card::after { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,transparent,var(--a),transparent); opacity:0; transition:opacity .3s; }
+.prod-card:hover { transform:translateY(-6px); border-color:rgba(0,212,255,0.35); box-shadow:0 20px 50px rgba(0,0,120,.4); }
+.prod-card:hover::after { opacity:1; }
+.prod-tag { font-size:10px; color:rgba(100,140,255,.65); letter-spacing:2px; margin-bottom:20px; }
+.prod-ico { font-size:30px; margin-bottom:16px; display:block; }
+.prod-nm { font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; margin-bottom:4px; }
+.prod-kr { font-size:12px; color:#00D4FF; font-weight:500; margin-bottom:14px; }
+.prod-desc { font-size:12.5px; color:rgba(160,195,255,.8); line-height:1.75; font-weight:300; }
+.pills { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.pill { font-size:10px; padding:3px 9px; border-radius:100px; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); color:#00D4FF; }
+
+/* ───── HOW ───── */
+.how-bg { background:rgba(0,0,60,.22); }
+.how-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.flow-col { display:flex; flex-direction:column; align-items:stretch; }
+.flow-nd {
+  background:linear-gradient(135deg,rgba(15,22,148,.7),rgba(8,12,100,.5));
+  border:1px solid rgba(0,212,255,0.18); border-radius:14px; padding:24px 22px;
+  display:flex; align-items:center; gap:18px; transition:all .3s;
+}
+.flow-nd:hover { border-color:rgba(0,212,255,.4); transform:translateX(4px); }
+.flow-nd.hl { border-color:rgba(0,212,255,.35); background:linear-gradient(135deg,rgba(0,55,160,.6),rgba(0,25,100,.5)); }
+.nd-ico { width:52px; height:52px; border-radius:12px; background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.2); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.nd-nm { font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700; margin-bottom:4px; }
+.nd-d { font-size:12px; color:rgba(160,195,255,.75); line-height:1.6; font-weight:300; }
+.arr { width:2px; height:26px; background:linear-gradient(180deg,rgba(0,212,255,.4),rgba(0,212,255,.1)); margin:4px 0 4px 37px; }
+.steps { display:flex; flex-direction:column; gap:12px; }
+.step {
+  display:flex; gap:16px; align-items:flex-start; padding:18px 20px;
+  background:rgba(0,212,255,.03); border:1px solid rgba(0,212,255,.1);
+  border-radius:10px; transition:all .25s;
+}
+.step:hover { background:rgba(0,212,255,.07); border-color:rgba(0,212,255,.22); }
+.sn { font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; color:rgba(0,212,255,.3); min-width:30px; line-height:1; }
+.st { font-size:13px; font-weight:700; color:#fff; margin-bottom:5px; }
+.sd { font-size:12.5px; color:rgba(160,195,255,.75); line-height:1.65; font-weight:300; }
+
+/* ───── FEATURES ───── */
+.feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.fc {
+  background:rgba(12,15,120,.4); border:1px solid rgba(0,212,255,.1);
+  border-radius:14px; padding:28px 24px; transition:all .3s;
+}
+.fc:hover { border-color:rgba(0,212,255,.3); background:rgba(12,15,130,.55); transform:translateY(-4px); }
+.fc.sp3 { grid-column:span 3; display:flex; gap:40px; align-items:center; background:linear-gradient(135deg,rgba(0,50,150,.3),rgba(12,15,120,.4)); }
+.fn { font-size:10px; color:rgba(0,212,255,.4); letter-spacing:2px; margin-bottom:14px; }
+.ft { font-size:15px; font-weight:700; margin-bottom:10px; }
+.fd { font-size:13px; color:rgba(160,195,255,.8); line-height:1.75; font-weight:300; }
+.ftags { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.ftag { font-size:10px; padding:3px 9px; border-radius:100px; background:rgba(0,212,255,.07); border:1px solid rgba(0,212,255,.18); color:#00D4FF; }
+.stamp { width:108px; height:108px; border-radius:50%; background:radial-gradient(circle,#1515CC,#080880); border:3px solid rgba(0,212,255,.5); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 28px rgba(0,100,255,.3); }
+.stamp-m { font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; }
+.stamp-s { font-size:9px; color:#00D4FF; letter-spacing:1px; margin-top:2px; text-align:center; }
+
+/* ───── COMPARE ───── */
+.cmp-bg { background:rgba(0,0,50,.22); }
+.cmp { width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; }
+.cmp th { padding:16px 22px; text-align:left; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+.cmp th:nth-child(1) { background:rgba(0,0,60,.5); color:rgba(150,180,255,.55); width:28%; }
+.cmp th:nth-child(2) { background:rgba(20,20,50,.8); color:rgba(150,180,255,.45); width:36%; }
+.cmp th:nth-child(3) { background:rgba(0,55,160,.6); color:#00D4FF; width:36%; }
+.cmp td { padding:15px 22px; font-size:13.5px; border-bottom:1px solid rgba(255,255,255,.04); }
+.cmp tr:last-child td { border-bottom:none; }
+.cmp tr:hover td { background:rgba(0,0,40,.12); }
+.cmp td:nth-child(1) { background:rgba(0,0,50,.3); color:rgba(180,210,255,.8); font-weight:500; }
+.cmp td:nth-child(2) { background:rgba(10,10,35,.25); color:rgba(120,150,200,.65); }
+.cmp td:nth-child(3) { background:rgba(0,30,90,.2); color:#fff; font-weight:500; }
+.no { color:#FF4C4C; margin-right:5px; }
+.yes { color:#00E5A0; margin-right:5px; }
+
+/* ───── APPLY ───── */
+.apply-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.ac { background:linear-gradient(135deg,rgba(12,15,120,.5),rgba(8,10,90,.35)); border:1px solid rgba(0,212,255,.1); border-radius:14px; padding:28px 24px; transition:all .3s; }
+.ac:hover { transform:translateY(-4px); border-color:rgba(0,212,255,.3); }
+.ai { font-size:28px; margin-bottom:14px; display:block; }
+.at { font-size:15px; font-weight:700; margin-bottom:8px; }
+.ad { font-size:13px; color:rgba(160,195,255,.8); line-height:1.7; font-weight:300; }
+
+/* ───── CONTACT ───── */
+.contact-box {
+  background:linear-gradient(135deg,rgba(0,40,130,.5),rgba(0,10,70,.5));
+  border:1px solid rgba(0,212,255,.18); border-radius:20px; padding:56px 48px;
+  display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
+}
+.ch { font-family:'Rajdhani',sans-serif; font-size:36px; font-weight:700; margin-bottom:10px; }
+.ch em { color:#00D4FF; font-style:normal; }
+.cs { font-size:15px; color:rgba(160,195,255,.8); font-weight:300; line-height:1.7; }
+.c-btns { display:flex; flex-direction:column; gap:12px; min-width:260px; }
+.cb { display:flex; align-items:center; gap:14px; padding:16px 22px; border-radius:11px; text-decoration:none; transition:all .25s; }
+.cb.em { background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.35); color:#fff; }
+.cb.em:hover { background:rgba(0,212,255,.18); transform:translateX(4px); }
+.cb.wb { background:rgba(0,40,120,.4); border:1px solid rgba(0,212,255,.18); color:rgba(200,220,255,.85); }
+.cb.wb:hover { background:rgba(0,40,130,.5); transform:translateX(4px); }
+.cb-lbl { font-size:10px; color:rgba(0,212,255,.65); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:2px; }
+.cb-val { font-size:14px; font-weight:700; letter-spacing:.3px; }
+.p-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+.pc { padding:18px 20px; background:rgba(8,10,80,.4); border:1px solid rgba(0,212,255,.1); border-radius:12px; transition:all .25s; }
+.pc:hover { border-color:rgba(0,212,255,.25); }
+.pr { font-size:10px; color:rgba(0,212,255,.6); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+.pn { font-size:14px; font-weight:700; }
+
+/* ───── FOOTER ───── */
+footer { border-top:1px solid rgba(255,255,255,.06); padding:28px 40px; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:rgba(120,150,200,.55); }
+footer a { color:#00D4FF; text-decoration:none; }
+
+/* ───── REVEAL ───── */
+.r { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+.r.v { opacity:1; transform:none; }
+
+/* ───── RESPONSIVE ───── */
+@media(max-width:900px){
+  .prod-grid { grid-template-columns:1fr 1fr; }
+  .feat-grid { grid-template-columns:1fr 1fr; }
+  .fc.sp3 { grid-column:1/-1; flex-direction:column; align-items:flex-start; }
+  .how-grid { grid-template-columns:1fr; }
+  .apply-grid { grid-template-columns:1fr 1fr; }
+  .p-strip { grid-template-columns:1fr 1fr; }
+  .contact-box { flex-direction:column; }
+}
+@media(max-width:600px){
+  .top-bar { padding:8px 16px; }
+  .top-bar-left { display:none; }
+  header { padding:14px 16px; top:35px; }
+  nav a:not(.nav-cta) { display:none; }
+  .wrap { padding:0 16px; }
+  .prod-grid,.apply-grid { grid-template-columns:1fr; }
+  .feat-grid { grid-template-columns:1fr; }
+  .kpi-strip { flex-wrap:wrap; }
+  .kpi { flex:0 0 50%; }
+  .cmp th,.cmp td { padding:10px 12px; font-size:12px; }
+  footer { flex-direction:column; gap:8px; text-align:center; }
+  .p-strip { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP CONTACT BAR -->
+<div class="top-bar">
+  <span class="top-bar-left">D-GO · Digital Data Safe Vault · 물리보안 × 사이버보안의 완전한 융합</span>
+  <a href="mailto:biz@boanlinks.com" class="top-contact">
+    <span class="dot"></span>
+    문의하기 &nbsp;·&nbsp; biz@boanlinks.com
+  </a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <a href="#hero" class="logo">
+    <div class="logo-box">DG</div>
+    <div>
+      <div class="logo-name">D<em>-GO</em></div>
+      <div class="logo-sub">Data Vault</div>
+    </div>
+  </a>
+  <nav>
+    <a href="#products">제품</a>
+    <a href="#how">작동방식</a>
+    <a href="#features">기능</a>
+    <a href="#compare">차별성</a>
+    <a href="#apply">적용분야</a>
+    <a href="#contact" class="nav-cta">문의</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="c"></canvas>
+  <div class="hero-in">
+    <div class="hero-badge"><span class="dot"></span>Quantum Data Vault</div>
+    <h1 class="hero-h1">D<em>-GO</em></h1>
+    <p class="hero-kr">유출되도 안전한 금고</p>
+    <p class="hero-body">도난 · 분해 · 해킹이 발생해도<br>데이터는 절대 유출되지 않습니다</p>
+    <div class="hero-btns">
+      <a href="https://www.boanlinks.com" target="_blank" class="btn-p">공식 사이트 방문 →</a>
+      <a href="mailto:biz@boanlinks.com" class="btn-g">✉ biz@boanlinks.com</a>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><span class="kv">PUF</span><span class="kl">물리복제 불가</span></div>
+      <div class="kpi"><span class="kv">AES-256</span><span class="kl">이중 암호화</span></div>
+      <div class="kpi"><span class="kv">3단계</span><span class="kl">통합 보안 구조</span></div>
+      <div class="kpi"><span class="kv">5단계</span><span class="kl">권한 관리</span></div>
+      <div class="kpi"><span class="kv">0건</span><span class="kl">유출 가능 경로</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- PRODUCTS -->
+<section id="products" class="sec">
+  <div class="wrap">
+    <div class="r">
+      <p class="sec-lbl">Product Lineup</p>
+      <h2 class="sec-h">D-GO <em>제품 구성</em></h2>
+      <p class="sec-d">보안 저장소 · 태블릿 · 도킹 스테이션 · 스캐너 · 녹음기로 구성된 통합 보안 플랫폼</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card r" style="--a:#00D4FF">
+        <div class="prod-tag">01 · VAULT</div>
+        <span class="prod-ico">🔐</span>
+        <div class="prod-nm">D-GO VAULT</div>
+        <div class="prod-kr">양자 암호화 데이터 저장소</div>
+        <p class="prod-desc">ICTK PUF 칩 기반 고유 보안키. AES-256 이중 암호화 저장. 도킹 인증 시에만 접근. 탈취·분해 즉시 영구 잠금.</p>
+        <div class="pills"><span class="pill">AES-256</span><span class="pill">PUF 칩</span></div>
+      </div>
+      <div class="prod-card r" style="--a:#00BFA5;transition-delay:.08s">
+        <div class="prod-tag">02 · TABLET</div>
+        <span class="prod-ico">📱</span>
+        <div class="prod-nm">D-GO TABLET</div>
+        <div class="prod-kr">보안 태블릿 단말기</div>
+        <p class="prod-desc">생체인증 + 보안토큰 인증. 도킹 해제 시 기능 자동 차단. 중앙 집중식 데이터 열람·편집·관리.</p>
+        <div class="pills"><span class="pill">생체인증</span><span class="pill">보안토큰</span></div>
+      </div>
+      <div class="prod-card r" style="--a:#FFD600;transition-delay:.16s">
+        <div class="prod-tag">03 · SCANNER</div>
+        <span class="prod-ico">🖨</span>
+        <div class="prod-nm">D-GO SCANNER</div>
+        <div class="prod-kr">보안 스캐너</div>
+        <p class="prod-desc">종이문서 → 즉시 보안 전자문서. 스캔 즉시 AES-256 자동 암호화. 해시값 + 타임스탬프 자동 부여.</p>
+        <div class="pills"><span class="pill">자동 암호화</span><span class="pill">타임스탬프</span></div>
+      </div>
+      <div class="prod-card r" style="--a:#A78BFA;transition-delay:.24s">
+        <div class="prod-tag">04 · VOICE</div>
+        <span class="prod-ico">🎙</span>
+        <div class="prod-nm">D-GO VOICE</div>
+        <div class="prod-kr">디지털 보안 녹음기</div>
+        <p class="prod-desc">회의·강의·상담 전용 보안 녹음. 실시간 암호화 저장. 타임스탬프 자동 봉인. 법적 증거 자산화.</p>
+        <div class="pills"><span class="pill">실시간 암호화</span><span class="pill">법적 증거</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec how-bg">
+  <div class="wrap">
+    <div class="r">
+      <p class="sec-lbl">How It Works</p>
+      <h2 class="sec-h"><em>3단</em> 통합 보안 구조</h2>
+      <p class="sec-d">물리 결합 인증부터 자동 소멸까지, 모든 단계가 보안으로 연결됩니다</p>
+    </div>
+    <div class="how-grid">
+      <div class="flow-col r">
+        <div class="flow-nd"><div class="nd-ico">🔐</div><div><div class="nd-nm">Secure Vault</div><div class="nd-d">PUF 기반 암호화 저장소 · 물리복제 원천 차단</div></div></div>
+        <div class="arr"></div>
+        <div class="flow-nd hl"><div class="nd-ico" style="background:rgba(0,212,255,.15)">🔗</div><div><div class="nd-nm">Docking Station</div><div class="nd-d">암호화 도킹 통신 · 비인가 장치 즉시 차단</div></div></div>
+        <div class="arr"></div>
+        <div class="flow-nd"><div class="nd-ico">📲</div><div><div class="nd-nm">Secure Tablet</div><div class="nd-d">인증된 접근 단말 · 도킹 해제 시 즉시 잠금</div></div></div>
+      </div>
+      <div class="steps r" style="transition-delay:.1s">
+        <div class="step"><span class="sn">01</span><div><div class="st">도킹 인증</div><div class="sd">태블릿을 Vault에 물리 결합 → PUF 키 검증 → 암호화 채널 활성화. 인증된 기기만 접근 가능.</div></div></div>
+        <div class="step"><span class="sn">02</span><div><div class="st">데이터 접근</div><div class="sd">AES-256 복호화로 데이터 열람·편집. 모든 이력 감사 로그 자동 기록. 5단계 권한에 따라 접근 범위 제어.</div></div></div>
+        <div class="step"><span class="sn">03</span><div><div class="st">도킹 해제</div><div class="sd">채널 즉시 종료. 태블릿 메모리 자동 소거. 모든 접근 권한 차단. 데이터는 Vault 내 잠금 상태 유지.</div></div></div>
+        <div class="step"><span class="sn">04</span><div><div class="st">탈취·분해 시</div><div class="sd">PUF 보안키 즉시 자동 소멸. 저장 매체를 물리적으로 분리해도 복호화 절대 불가. 데이터 영구 보호.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- FEATURES -->
+<section id="features" class="sec">
+  <div class="wrap">
+    <div class="r">
+      <p class="sec-lbl">Core Features</p>
+      <h2 class="sec-h">핵심 기능 <em>7가지</em></h2>
+      <p class="sec-d">하드웨어와 소프트웨어가 융합된, 기존과 비교 불가한 보안성</p>
+    </div>
+    <div class="feat-grid">
+      <div class="fc r"><div class="fn">01</div><div class="ft">🔩 PUF 기반 물리보안</div><p class="fd">반도체 고유 특성 기반 세계 유일 보안키. 복제·모방 물리적 불가. 도난·분해 시 영구 잠금.</p><div class="ftags"><span class="ftag">ICTK PUF 칩</span><span class="ftag">물리복제 불가</span></div></div>
+      <div class="fc r" style="transition-delay:.07s"><div class="fn">02</div><div class="ft">🔗 도킹 인증 구조</div><p class="fd">물리 결합 시에만 접근 허용. 도킹 해제 즉시 전체 차단. 비인가 장치 연결 즉시 차단.</p><div class="ftags"><span class="ftag">Hardware Auth</span></div></div>
+      <div class="fc r" style="transition-delay:.14s"><div class="fn">03</div><div class="ft">🔒 데이터 이중 암호화</div><p class="fd">저장 AES-256, 전송 RSA-2048 적용. 장비를 탈취해도 복호화 절대 불가.</p><div class="ftags"><span class="ftag">AES-256</span><span class="ftag">RSA-2048</span></div></div>
+      <div class="fc r" style="transition-delay:.07s"><div class="fn">04</div><div class="ft">🌐 폐쇄형 네트워크 격리</div><p class="fd">도킹 시 네트워크 완전 차단. 랜섬웨어·해킹 침입 경로 원천 차단. 완전 폐쇄형 아키텍처.</p><div class="ftags"><span class="ftag">Air-Gap</span></div></div>
+      <div class="fc r" style="transition-delay:.14s"><div class="fn">05</div><div class="ft">⚡ 실시간 차단 시스템</div><p class="fd">장비·사용자·네트워크 실시간 검증. 이상 징후 즉시 자동 격리. 감사 로그·원격 잠금 통합.</p><div class="ftags"><span class="ftag">Real-time</span></div></div>
+      <div class="fc r" style="transition-delay:.21s"><div class="fn">06</div><div class="ft">🔑 5단계 권한 관리</div><p class="fd">Lv1 열람 → Lv2 다운로드 → Lv3 편집 → Lv4 소유권 이전 → Lv5 봉인 관리.</p><div class="ftags"><span class="ftag">Access Control</span></div></div>
+      <div class="fc sp3 r" style="transition-delay:.1s">
+        <div class="stamp"><div class="stamp-m">진본</div><div class="stamp-s">원본대조필</div></div>
+        <div>
+          <div class="fn">07</div>
+          <div class="ft">🏛 원본대조필 · 시점인증 — 디지털 공증</div>
+          <p class="fd">SHA-256 해시값 + 타임스탬프 봉인으로 디지털 원본 보호. QR 코드 외부 검증. 한국인터넷진흥원 타임스탬프 연동. 대법원 전자소송 시스템 제출 대응. 공증 완료 시 원본대조필 인증서 자동 발급.</p>
+          <div class="ftags"><span class="ftag">디지털 공증</span><span class="ftag">SHA-256</span><span class="ftag">KISA 연동</span><span class="ftag">대법원 대응</span><span class="ftag">QR 검증</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- COMPARE -->
+<section id="compare" class="sec cmp-bg">
+  <div class="wrap">
+    <div class="r">
+      <p class="sec-lbl">Comparison</p>
+      <h2 class="sec-h">기존 솔루션과의 <em>차별성</em></h2>
+      <p class="sec-d">소프트웨어 보안의 한계를 HW+SW 융합으로 완전히 극복합니다</p>
+    </div>
+    <table class="cmp r">
+      <thead>
+        <tr><th>비교 항목</th><th>기존 보안 솔루션</th><th>D-GO Digital Data Safe Vault</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>보안 구조</td><td><span class="no">✗</span>소프트웨어 중심</td><td><span class="yes">✓</span>HW + SW 완전 융합</td></tr>
+        <tr><td>복제 방지</td><td><span class="no">✗</span>암호키 복제 위험</td><td><span class="yes">✓</span>PUF 기반 물리복제 불가</td></tr>
+        <tr><td>접근 방식</td><td><span class="no">✗</span>네트워크 인증만</td><td><span class="yes">✓</span>도킹 + 생체인증 + 보안토큰</td></tr>
+        <tr><td>사고 대응</td><td><span class="no">✗</span>사후 탐지</td><td><span class="yes">✓</span>사전 차단 + 자동 무력화</td></tr>
+        <tr><td>네트워크 구조</td><td><span class="no">✗</span>개방형</td><td><span class="yes">✓</span>완전 폐쇄형 아키텍처</td></tr>
+        <tr><td>시점 인증</td><td><span class="no">✗</span>없음</td><td><span class="yes">✓</span>공인기관 타임스탬프 봉인</td></tr>
+        <tr><td>법적 대응</td><td><span class="no">✗</span>없음</td><td><span class="yes">✓</span>대법원 전자소송 시스템 대응</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- APPLY FIELDS -->
+<section id="apply" class="sec">
+  <div class="wrap">
+    <div class="r">
+      <p class="sec-lbl">Application Fields</p>
+      <h2 class="sec-h"><em>적용</em> 분야</h2>
+      <p class="sec-d">기밀 데이터를 다루는 모든 곳에서 D-GO가 필요합니다</p>
+    </div>
+    <div class="apply-grid">
+      <div class="ac r"><span class="ai">🏛</span><div class="at">국가기관 · 공공기관</div><p class="ad">기밀자료, 설계도면, 행정 데이터 폐쇄망 보안. 공공 규제 기준 완벽 충족.</p></div>
+      <div class="ac r" style="transition-delay:.07s"><span class="ai">🏦</span><div class="at">금융기관 · 대기업</div><p class="ad">고객 개인정보, 핵심 기술자료 보호. 금융 규제 대응 및 내부자 유출 차단.</p></div>
+      <div class="ac r" style="transition-delay:.14s"><span class="ai">🔬</span><div class="at">연구소 · 방위산업</div><p class="ad">핵심 기술 및 R&D 정보 보호. 기술 유출 제로, 국가안보급 보안 적용.</p></div>
+      <div class="ac r" style="transition-delay:.07s"><span class="ai">🏥</span><div class="at">의료 · 에너지 · 인프라</div><p class="ad">의료정보, 제어계측 데이터 보호. 개인정보보호법·ISMS 규제 대응.</p></div>
+      <div class="ac r" style="transition-delay:.14s"><span class="ai">⚖</span><div class="at">법률 · 세무 · 회계 · 노무</div><p class="ad">고객 개인정보, 법무·세무 자료 완벽 보호. 변호사법·세무사법 비밀유지 의무 준수.</p></div>
+      <div class="ac r" style="transition-delay:.21s"><span class="ai">👨‍💼</span><div class="at">의사 · 작가 · 전문직</div><p class="ad">진료기록, 계약서, 창작물 안전 보관. 개인 단위 도입도 가능합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="sec" style="padding-bottom:0">
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="r" style="margin-bottom:32px">
+      <p class="sec-lbl">Contact</p>
+      <h2 class="sec-h">도입 <em>문의</em></h2>
+    </div>
+    <div class="contact-box r">
+      <div>
+        <div class="ch">지금 바로 <em>문의</em>하세요</div>
+        <p class="cs">D-GO 도입 상담, 데모 요청, 제휴 문의<br>무엇이든 빠르게 답변드리겠습니다.</p>
+      </div>
+      <div class="c-btns">
+        <a href="mailto:biz@boanlinks.com" class="cb em">
+          <span style="font-size:20px">✉️</span>
+          <div><div class="cb-lbl">이메일 문의</div><div class="cb-val">biz@boanlinks.com</div></div>
+        </a>
+        <a href="https://www.boanlinks.com" target="_blank" class="cb wb">
+          <span style="font-size:20px">🌐</span>
+          <div><div class="cb-lbl">공식 웹사이트</div><div class="cb-val">www.boanlinks.com</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="p-strip r" style="transition-delay:.1s">
+      <div class="pc"><div class="pr">Platform</div><div class="pn">진앤현시큐리티</div></div>
+      <div class="pc"><div class="pr">PUF Chip</div><div class="pn">ICTK</div></div>
+      <div class="pc"><div class="pr">System Integration</div><div class="pn">솔모정보기술</div></div>
+      <div class="pc"><div class="pr">Digital Notary</div><div class="pn">쿠도</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="logo-box" style="width:30px;height:30px;font-size:13px">DG</div>
+    D-GO Digital Data Safe Vault
+  </div>
+  <span>© 2026 진앤현시큐리티. All rights reserved.</span>
+  <a href="https://www.boanlinks.com" target="_blank">www.boanlinks.com</a>
+</footer>
+
+<script>
+// Canvas
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+let W, H;
+function rsz(){ W = cv.width = innerWidth; H = cv.height = cv.parentElement.offsetHeight; }
+window.addEventListener('resize', rsz); rsz();
+
+const pts = Array.from({length:95}, () => ({
+  x:Math.random()*W, y:Math.random()*H,
+  vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
+  r:Math.random()*1.4+.3, a:Math.random()*.45+.1,
+  col:Math.random()>.65?'#00D4FF':'#3355FF'
+}));
+
+(function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='rgba(0,60,180,0.05)'; ctx.lineWidth=.5;
+  for(let x=0;x<W;x+=72){ ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke(); }
+  for(let y=0;y<H;y+=72){ ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke(); }
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
+      if(d<115){ ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.strokeStyle=`rgba(0,80,200,${(1-d/115)*.09})`; ctx.lineWidth=.5; ctx.stroke(); }
+    }
+  }
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>W) p.vx*=-1;
+    if(p.y<0||p.y>H) p.vy*=-1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.col; ctx.globalAlpha=p.a; ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  requestAnimationFrame(draw);
+})();
+
+// Scroll reveal
+const ob = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('v'); ob.unobserve(e.target); }});
+},{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>ob.observe(el));
+
+// Nav active highlight
+const secs = document.querySelectorAll('section[id]');
+const nls = document.querySelectorAll('nav a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{ if(scrollY>=s.offsetTop-130) cur=s.id; });
+  nls.forEach(a=>{ a.style.color = a.getAttribute('href')==='#'+cur ? '#00D4FF' : ''; });
+},{ passive:true });
+</script>
+</body>
+</html>
